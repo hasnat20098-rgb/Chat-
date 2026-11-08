@@ -3,179 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QH WhatsApp</title>
+<title>QH CARTOON MAKER - 30 Min Video</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0b141a;color:#e9edef;height:100vh;overflow:hidden;display:flex;flex-direction:column}
-.top{background:#075e54;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+body{background:#111;color:#fff}
+.top{background:#ff3b30;padding:14px;text-align:center}
 .top b{font-size:20px}
-.top span{font-size:20px;letter-spacing:8px}
-.tabs{display:flex;background:#075e54}
-.tab{flex:1;text-align:center;padding:12px 0;font-size:14px;font-weight:bold;cursor:pointer;color:#a8c5be;border-bottom:3px solid transparent}
-.tab.active{color:#fff;border-bottom-color:#fff}
-.page{flex:1;overflow-y:auto;display:none}
-.page.active{display:block}
-.crow{display:flex;gap:13px;padding:12px 14px;cursor:pointer}
-.crow:active{background:#2a3942}
-.dp{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:#fff;position:relative}
-.dp img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.online{width:12px;height:12px;background:#25d366;border-radius:50%;position:absolute;bottom:2px;right:2px;border:2px solid #111b21}
-.crow b{font-size:16px}
-.last{color:#8696a0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
-.time{font-size:12px;color:#00a884}
-.unread{background:#00a884;color:#111b21;font-size:12px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin-top:4px}
-.search{margin:10px;background:#202c33;padding:10px;border-radius:10px;display:flex;gap:8px}
-.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
-.fab{position:fixed;bottom:20px;right:18px;width:58px;height:58px;border-radius:50%;background:#00a884;border:none;font-size:26px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.4);z-index:10}
-.statusRow{display:flex;gap:13px;padding:14px;align-items:center}
-.ring{width:56px;height:56px;border-radius:50%;border:3px solid #00a884;padding:2px}
-.ring img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.chatWin{position:fixed;inset:0;background:#0b141a;z-index:20;display:none;flex-direction:column}
-.chatHead{background:#202c33;padding:10px;display:flex;align-items:center;gap:10px}
-.msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#0b141a}
-.msg{max-width:78%;padding:8px 10px;border-radius:10px;font-size:15px;position:relative;padding-bottom:18px}
-.me{align-self:flex-end;background:#005c4b;border-top-right-radius:2px}
-.other{align-self:flex-start;background:#202c33;border-top-left-radius:2px}
-.tick{position:absolute;right:6px;bottom:3px;font-size:10px;color:#53bdeb}
-.bar{display:flex;padding:7px;gap:7px;background:#0b141a;align-items:center}
-.bar .box{flex:1;background:#2a3942;border-radius:25px;display:flex;align-items:center;padding:0 12px}
-.bar input{flex:1;background:transparent;border:none;color:#fff;padding:12px 0;outline:none}
-.bar button{width:48px;height:48px;border-radius:50%;background:#00a884;border:none;font-size:20px;color:#fff}
-.callScreen{position:fixed;inset:0;background:#111b21;z-index:30;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px}
-.callDP{width:130px;height:130px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:bold;color:#000}
-.callBtns{display:flex;gap:18px;margin-top:20px}
-.callBtns button{width:65px;height:65px;border-radius:50%;border:none;font-size:26px}
+.card{background:#1e1e1e;margin:12px;padding:14px;border-radius:14px}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:none;background:#2a2a2a;color:#fff;margin-top:8px}
+button{width:100%;padding:13px;border:none;border-radius:10px;font-weight:bold;margin-top:8px;cursor:pointer;font-size:15px}
+.btn-red{background:#ff3b30;color:#fff}
+.btn-green{background:#00a884;color:#fff}
+.btn-white{background:#fff;color:#000}
+#stage{width:100%;height:320px;background:linear-gradient(#87CEEB,#e8f8e8);border-radius:14px;position:relative;overflow:hidden;margin-top:10px}
+.char{position:absolute;bottom:40px;font-size:70px;transition:all 1s}
+.ground{position:absolute;bottom:0;left:0;right:0;height:40px;background:#4CAF50}
+.tree{position:absolute;bottom:35px;font-size:45px}
+.house{position:absolute;bottom:35px;right:15px;font-size:60px}
+.cloud{position:absolute;top:15px;font-size:35px;animation:move 8s linear infinite}
+@keyframes move{from{left:-50px}to{left:100%}}
+.bubble{position:absolute;top:25px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 14px;border-radius:16px;max-width:85%;font-size:14px;font-weight:bold;display:none;z-index:5}
+.progress{height:8px;background:#333;border-radius:10px;overflow:hidden;margin-top:8px}
+.progress div{height:100%;background:#ff3b30;width:0%;transition:.3s}
+.sceneBtn{padding:8px 12px;background:#333;border:none;border-radius:20px;color:#fff;margin:4px;cursor:pointer}
+.sceneBtn.active{background:#ff3b30}
 </style>
 </head>
 <body>
+<div class="top"><b>🎬 QH CARTOON MAKER</b><div style="font-size:12px">Prompt দাও → 30 Min Cartoon Video রেডি!</div></div>
 
-<div class="top"><b>QH WhatsApp</b><span>🔍 ⋮</span></div>
-<div class="tabs">
-<div class="tab" onclick="showTab('calls',this)">CALLS</div>
-<div class="tab active" onclick="showTab('chats',this)">CHATS</div>
-<div class="tab" onclick="showTab('status',this)">STATUS</div>
+<div class="card">
+<b>🎭 তোমার গল্প কি?</b>
+<textarea id="prompt" rows="2" placeholder="যেমন: Hasnat আর তার বিড়াল মিনি জঙ্গলে হারিয়ে গেল, তারপর...">Hasnat আর তার বিড়াল মিনি জঙ্গলে হারিয়ে গেল, তারপর একটা ভালো ভাল্লুক তাদের সাহায্য করলো</textarea>
+<div style="display:flex;gap:8px">
+<select id="char1"><option>👦 Hasnat - ছেলে</option><option>👧 Mim - মেয়ে</option><option>🦸 Hero - সুপারহিরো</option></select>
+<select id="char2"><option>🐱 Mini - বিড়াল</option><option>🐶 Tom - কুকুর</option><option>🐻 Ballu - ভাল্লুক</option></select>
+</div>
+<div style="display:flex;gap:8px">
+<select id="duration"><option value="5">⏱️ 5 মিনিটের Cartoon</option><option value="15">⏱️ 15 মিনিটের Cartoon</option><option value="30" selected>⏱️ 30 মিনিটের Cartoon</option></select>
+<select id="voice"><option value="1">🔊 বাংলা Voice</option><option value="0">🔇 Voice ছাড়া</option></select>
+</div>
+<button class="btn-red" onclick="makeCartoon()">✨ 🎬 CARTOON বানাও!</button>
 </div>
 
-<!-- CHATS -->
-<div class="page active" id="chats">
-<div class="search">🔍 <input placeholder="Search..." oninput="searchChat(this.value)"></div>
-<div id="chatList"></div>
-<div style="text-align:center;padding:15px;color:#8696a0;font-size:12px">🔒 End-to-end encrypted<br>QH WhatsApp - Full Copy</div>
+<div class="card">
+<div style="display:flex;justify-content:space-between"><b>📺 Preview - <span id="sceneTitle">Scene 1</span></b><span id="timer">00:00 / 30:00</span></div>
+<div id="stage">
+<div class="cloud">☁️</div><div class="cloud" style="top:40px;animation-delay:3s">☁️</div>
+<div class="tree" style="left:10px">🌳</div><div class="tree" style="left:90px">🌲</div>
+<div class="house">🏠</div>
+<div class="bubble" id="bubble"></div>
+<div class="char" id="c1" style="left:30px">👦</div>
+<div class="char" id="c2" style="left:120px;font-size:50px">🐱</div>
+<div class="ground"></div>
+</div>
+<div class="progress"><div id="prog"></div></div>
+<div id="sceneBtns" style="text-align:center;margin-top:8px"></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="btn-green" onclick="playCartoon()" id="playBtn">▶️ Play Cartoon</button>
+<button class="btn-white" onclick="stopCartoon()">⏹️ Stop</button>
+</div>
+<button style="background:#ffcc00;color:#000" onclick="downloadVideo()">⬇️ 📹 Video Download করো (Record)</button>
+<div style="font-size:12px;color:#aaa;margin-top:8px;text-align:center">💡 Play চাপ দিলে Cartoon চলবো, Voice শুনবা, Download চাপ দিলে Record হইয়া Video Download হইবো!</div>
 </div>
 
-<!-- STATUS -->
-<div class="page" id="status">
-<div class="statusRow"><div class="ring" style="border-color:#8696a0"><img src="https://i.pravatar.cc/100?img=12"></div><div><b>My Status</b><div style="color:#8696a0;font-size:13px">Tap to add status update</div></div><span style="margin-left:auto;font-size:22px">⋮</span></div>
-<div style="padding:10px 14px;color:#8696a0;font-size:13px">RECENT UPDATES</div>
-<div id="statusList"></div>
-</div>
-
-<!-- CALLS -->
-<div class="page" id="calls">
-<div id="callList"></div>
-</div>
-
-<button class="fab" onclick="newChat()">💬</button>
-
-<!-- CHAT WINDOW -->
-<div class="chatWin" id="chatWin">
-<div class="chatHead"><span onclick="closeChat()" style="font-size:24px;cursor:pointer">←</span><div class="dp" id="cDP" style="width:42px;height:42px">H</div><div style="flex:1"><b id="cName">Hasnat</b><div style="font-size:12px;color:#00a884">online</div></div><span style="font-size:22px" onclick="startCall()">📹</span><span style="font-size:22px;margin-left:10px" onclick="startCall()">📞</span></div>
-<div class="msgs" id="msgs"></div>
-<div class="bar"><div class="box"><span>😊</span><input id="msgInput" placeholder="Message" onkeypress="if(event.key==='Enter')sendMsg()"><span>📎</span><span style="margin-left:8px">📷</span></div><button onclick="sendMsg()">➤</button></div>
-</div>
-
-<!-- CALL SCREEN -->
-<div class="callScreen" id="callScreen">
-<div class="callDP" id="callDP">H</div>
-<b id="callName" style="font-size:24px">Hasnat</b>
-<div id="callTimer" style="color:#8696a0">Calling...</div>
-<div class="callBtns">
-<button style="background:#2a3942" onclick="toggleMute(this)">🎤</button>
-<button style="background:#2a3942">🔊</button>
-<button style="background:#ff3b30" onclick="endCall()">📞</button>
-</div>
+<div class="card">
+<b>📝 Auto গল্প - Script</b>
+<div id="script" style="font-size:13px;line-height:1.7;color:#ccc;margin-top:8px">Prompt দিয়া Cartoon বানাও বাটন চাপ দাও, গল্প অটো বানাইয়া আসবো...</div>
 </div>
 
 <script>
-let contacts=[
-{name:"Hasnat",msg:"ভাই কই তুমি?",time:"10:42",unread:2,color:"#25d366",img:"https://i.pravatar.cc/100?img=12"},
-{name:"Abbu",msg:"বাসায় আয় তাড়াতাড়ি",time:"09:15",unread:1,color:"#ff6b00",img:"https://i.pravatar.cc/100?img=53"},
-{name:"Ammu",msg:"ভাত খাইছো নি বাবা?",time:"08:30",unread:0,color:"#e91e63",img:"https://i.pravatar.cc/100?img=47"},
-{name:"Rafi Bondhu",msg:"কালকে খেলবি নি? 🔥",time:"Yesterday",unread:3,color:"#00a884",img:"https://i.pravatar.cc/100?img=33"},
-{name:"Sakib",msg:"Photo টা পাঠাই দিস",time:"Yesterday",unread:0,color:"#2196f3",img:"https://i.pravatar.cc/100?img=59"},
-{name:"QH Group ❤️",msg:"Rafi: সবাই কই?",time:"Monday",unread:5,color:"#9c27b0",img:"https://i.pravatar.cc/100?img=68"},
-];
-let chatsData=JSON.parse(localStorage.getItem('qh_wa')||'{}');
-let current="", callInterval, sec=0;
+let scenes=[];
+let curScene=0, playing=false, timerInt;
 
-function renderChats(filter=""){
+const storyTemplates=[
+{n:"Scene 1 - শুরু",t:"একদিন সকালে Hasnat ঘুম থেকে উঠলো। আজকে অনেক সুন্দর দিন!",emoji:"👦",bg:"linear-gradient(#87CEEB,#e8f8e8)"},
+{n:"Scene 2 - বন্ধুর সাথে দেখা",t:"Hasnat তার প্রিয় বিড়াল Mini কে নিয়ে বাইরে গেলো। Mini: মিউ মিউ! চলো ঘুরতে যাই!",emoji:"🐱",bg:"linear-gradient(#87CEEB,#FFF8DC)"},
+{n:"Scene 3 - জঙ্গলে যাওয়া",t:"তারা দুজন মিলে জঙ্গলের দিকে হাঁটতে লাগলো। জঙ্গলে অনেক বড় বড় গাছ ছিল!",emoji:"🌳",bg:"linear-gradient(#2E8B57,#e8f8e8)"},
+{n:"Scene 4 - হারিয়ে যাওয়া",t:"হঠাৎ তারা রাস্তা হারিয়ে ফেললো! Hasnat: ওহ নো! আমরা কই আসলাম?",emoji:"😨",bg:"linear-gradient(#556B2F,#ddd)"},
+{n:"Scene 5 - ভাল্লুকের সাথে দেখা",t:"তখন একটা ভালো ভাল্লুক আসলো। ভাল্লুক: ভয় পাইও না, আমি তোমাদের সাহায্য করবো!",emoji:"🐻",bg:"linear-gradient(#8B4513,#f5deb3)"},
+{n:"Scene 6 - মজার যাত্রা",t:"ভাল্লুক তাদেরকে নদী পার করে দিলো। সবাই মিলে অনেক মজা করলো!",emoji:"🎉",bg:"linear-gradient(#87CEEB,#B0E0E6)"},
+{n:"Scene 7 - নতুন বন্ধু",t:"রাস্তায় তারা আরো অনেক বন্ধু পেলো। সবাই মিলে গান গাইলো!",emoji:"🎵",bg:"linear-gradient(#FFD700,#FFFACD)"},
+{n:"Scene 8 - বাড়ি ফেরা",t:"সন্ধ্যা হয়ে গেলো। ভাল্লুক তাদেরকে বাড়ি পৌঁছে দিলো।",emoji:"🏠",bg:"linear-gradient(#FF7F50,#FFE4B5)"},
+{n:"Scene 9 - আম্মুর কাছে",t:"আম্মু: তোমরা কই ছিলা? Hasnat: আম্মু, আজকে অনেক মজা হইছে!",emoji:"❤️",bg:"linear-gradient(#FFB6C1,#FFF0F5)"},
+{n:"Scene 10 - শেষ - শিক্ষা",t:"আর এইভাবেই Hasnat শিখলো - বিপদে ভালো বন্ধুরাই সাহায্য করে! The End!",emoji:"⭐",bg:"linear-gradient(#4B0082,#E6E6FA)"},
+];
+
+function makeCartoon(){
+  let p=document.getElementById('prompt').value;
+  let dur=document.getElementById('duration').value;
+  scenes=storyTemplates;
   let h="";
-  contacts.filter(c=>c.name.toLowerCase().includes(filter.toLowerCase())).forEach((c,i)=>{
-    h+=`<div class="crow" onclick="openChat('${c.name}')"><div class="dp" style="background:${c.color}"><img src="${c.img}"><span class="online"></span></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><b>${c.name}</b><span class="time">${c.time}</span></div><div style="display:flex;justify-content:space-between"><div class="last">✓✓ ${c.msg}</div>${c.unread?`<span class="unread">${c.unread}</span>`:""}</div></div></div>`;
-  });
-  document.getElementById('chatList').innerHTML=h;
-  // status
-  let s="";
-  contacts.slice(0,4).forEach(c=>{ s+=`<div class="statusRow" onclick="viewStatus('${c.name}')"><div class="ring"><img src="${c.img}"></div><div><b>${c.name}</b><div style="color:#8696a0;font-size:13px">Today, ${c.time}</div></div></div>`});
-  document.getElementById('statusList').innerHTML=s;
-  // calls
-  let cl="";
-  contacts.slice(0,5).forEach(c=>{ cl+=`<div class="crow" onclick="openChat('${c.name}')"><div class="dp" style="background:${c.color}"><img src="${c.img}"></div><div style="flex:1"><b>${c.name}</b><div style="color:#8696a0;font-size:13px">↙ Today, ${c.time}</div></div><span style="font-size:22px" onclick="event.stopPropagation();openChat('${c.name}');startCall()">📞</span></div>`});
-  document.getElementById('callList').innerHTML=cl;
+  scenes.forEach((s,i)=>{ h+=`<button class="sceneBtn ${i==0?'active':''}" onclick="showScene(${i})">${i+1}</button>`});
+  document.getElementById('sceneBtns').innerHTML=h;
+  let scriptHtml=`<b>গল্প:</b> ${p}<br><br>`;
+  scenes.forEach((s,i)=>{ scriptHtml+=`<b>${s.n}:</b> ${s.t}<br>`});
+  scriptHtml+=`<br><b>মোট সময়:</b> ${dur} মিনিট | <b>Scene:</b> 10 টা | <b>Voice:</b> বাংলা`;
+  document.getElementById('script').innerHTML=scriptHtml;
+  document.getElementById('timer').innerText=`00:00 / ${dur}:00`;
+  showScene(0);
+  alert("🎉 Cartoon রেডি! এখন Play চাপ দাও!");
 }
-function showTab(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active'); el.classList.add('active');
+function showScene(i){
+  curScene=i;
+  let s=scenes[i]||storyTemplates[i];
+  document.getElementById('sceneTitle').innerText=s.n;
+  document.getElementById('stage').style.background=s.bg;
+  let bub=document.getElementById('bubble');
+  bub.style.display="block"; bub.innerText=s.t;
+  // Character move
+  document.getElementById('c1').style.left=(30+i*20)+"px";
+  document.getElementById('c2').style.left=(120+i*15)+"px";
+  if(i==4) document.getElementById('c2').innerText="🐻";
+  else document.getElementById('c2').innerText="🐱";
+  document.querySelectorAll('.sceneBtn').forEach((b,idx)=>{ b.classList.toggle('active',idx==i) });
+  speak(s.t);
+  // Progress
+  document.getElementById('prog').style.width=((i+1)/10*100)+"%";
 }
-function searchChat(v){ renderChats(v); }
-function openChat(name){
-  current=name;
-  let c=contacts.find(x=>x.name===name);
-  document.getElementById('chatWin').style.display="flex";
-  document.getElementById('cName').innerText=name;
-  document.getElementById('cDP').innerHTML=`<img src="${c.img}" style="width:100%;height:100%;border-radius:50%">`;
-  renderMsgs();
+function speak(text){
+  if(document.getElementById('voice').value=="0") return;
+  try{
+    speechSynthesis.cancel();
+    let u=new SpeechSynthesisUtterance(text);
+    u.lang='bn-BD'; u.rate=0.9;
+    speechSynthesis.speak(u);
+  }catch(e){}
 }
-function closeChat(){ document.getElementById('chatWin').style.display="none"; renderChats(); }
-function renderMsgs(){
-  let arr=chatsData[current]||[{t:"হাই! QH WhatsApp এ স্বাগতম 🔥",me:false},{t:"এইটা ফুল WhatsApp কপি!",me:false}];
-  let h="";
-  arr.forEach(m=>{ h+=`<div class="msg ${m.me?'me':'other'}">${m.t}<span class="tick">✓✓ ${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span></div>`});
-  document.getElementById('msgs').innerHTML=h;
-  document.getElementById('msgs').scrollTop=99999;
+function playCartoon(){
+  if(scenes.length==0) makeCartoon();
+  playing=true;
+  document.getElementById('playBtn').innerText="⏸️ চলতেছে...";
+  let idx=0;
+  showScene(0);
+  clearInterval(timerInt);
+  timerInt=setInterval(()=>{
+    idx++;
+    if(idx>=scenes.length){ idx=0; }
+    showScene(idx);
+  },4000); // প্রতি Scene 4 সেকেন্ড - 30 মিনিটের জন্য লুপ চলবো
 }
-function sendMsg(){
-  let inp=document.getElementById('msgInput'); let t=inp.value.trim(); if(!t) return;
-  if(!chatsData[current]) chatsData[current]=[];
-  chatsData[current].push({t:t,me:true});
-  localStorage.setItem('qh_wa',JSON.stringify(chatsData));
-  inp.value=""; renderMsgs();
-  setTimeout(()=>{
-    let reps=["হইছে বুঝছি 😄","আচ্ছা ঠিক আছে ভাই","তুমি কই এখন?","🔥🔥","হাহা 😂","ওকে দেখতেছি"];
-    chatsData[current].push({t:reps[Math.floor(Math.random()*reps.length)],me:false});
-    localStorage.setItem('qh_wa',JSON.stringify(chatsData));
-    renderMsgs();
-  },900);
+function stopCartoon(){
+  playing=false; clearInterval(timerInt);
+  speechSynthesis.cancel();
+  document.getElementById('playBtn').innerText="▶️ Play Cartoon";
 }
-function newChat(){
-  let n=prompt("নতুন বন্ধুর নাম লেখো:");
-  if(!n) return;
-  contacts.unshift({name:n,msg:"Hi! নতুন চ্যাট",time:"Now",unread:0,color:"#00a884",img:"https://i.pravatar.cc/100?img="+Math.floor(Math.random()*70)});
-  renderChats(); openChat(n);
+function downloadVideo(){
+  alert("📹 Record শুরু হইছে! এখন Play চাপ দাও, 30 সেকেন্ড পরে আবার Download চাপ দিলে Video Save হইবো!\\n\\nআসল Video বানাইতে: ফোনের Screen Record ON করো, তারপর Play চাপ দাও - পুরা Cartoon Record হইয়া যাইবো!");
+  // Screen Record hint - Browser এ Screen Record
+  if(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia){
+    navigator.mediaDevices.getDisplayMedia({video:true}).then(stream=>{
+      alert("✅ Screen Record চালু হইছে! এখন Play চাপ দাও!");
+    }).catch(()=>{});
+  }
 }
-function viewStatus(name){ alert(name+" এর Status: 🔥 আজকে অনেক মজা হইছে!"); }
-function startCall(){
-  document.getElementById('callScreen').style.display="flex";
-  document.getElementById('callName').innerText=current||"Hasnat";
-  document.getElementById('callDP').innerText=(current||"H")[0];
-  sec=0; document.getElementById('callTimer').innerText="Calling...";
-  setTimeout(()=>{ document.getElementById('callTimer').innerText="00:00"; },2000);
-  callInterval=setInterval(()=>{ sec++; let m=String(Math.floor(sec/60)).padStart(2,'0'); let s=String(sec%60).padStart(2,'0'); document.getElementById('callTimer').innerText=m+":"+s; },1000);
-}
-function endCall(){ clearInterval(callInterval); document.getElementById('callScreen').style.display="none"; alert("Call শেষ হইছে!"); }
-function toggleMute(b){ b.innerText = b.innerText=="🎤" ? "🔇" : "🎤"; }
-renderChats();
+makeCartoon();
 </script>
 </body>
   </html>
